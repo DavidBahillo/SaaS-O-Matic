@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { isValidSpanishTaxId, parseCountry, parseOptionalTaxId } from './validation.js';
+import { isValidSpanishTaxId, parseCountry, parseOptionalTaxId, parseOptionalTaxIdForCountry } from './validation.js';
 
 test('acepta DNI validos con modulo 23', () => {
   assert.equal(isValidSpanishTaxId('12345678Z'), true);
@@ -44,6 +44,16 @@ test('parseOptionalTaxId normaliza a mayusculas y valida', () => {
 test('parseOptionalTaxId lanza error en identificadores invalidos', () => {
   assert.throws(() => parseOptionalTaxId('12345678A'));
   assert.throws(() => parseOptionalTaxId('B12345670'));
+});
+
+test('parseOptionalTaxIdForCountry valida DNI/NIF/CIF solo para ES', () => {
+  assert.equal(parseOptionalTaxIdForCountry('ES', 'x1234567l'), 'X1234567L');
+  assert.throws(() => parseOptionalTaxIdForCountry('ES', 'tax-id-invalido'));
+});
+
+test('parseOptionalTaxIdForCountry no aplica validacion espanola fuera de ES', () => {
+  assert.equal(parseOptionalTaxIdForCountry('US', 'tax-id-invalido'), 'TAX-ID-INVALIDO');
+  assert.equal(parseOptionalTaxIdForCountry('FR', 'ab-123-456'), 'AB-123-456');
 });
 
 test('parseCountry acepta codigos ISO de pais en minuscula y los normaliza', () => {

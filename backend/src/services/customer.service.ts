@@ -11,7 +11,7 @@ import {
   parseCountry,
   parseEmail,
   parseOptionalPlan,
-  parseOptionalTaxId,
+  parseOptionalTaxIdForCountry,
   parseString,
 } from '../validation.js';
 import { badRequest, notFound } from '../errors.js';
@@ -38,11 +38,13 @@ export class CustomerService {
   public async createCustomer(payload: unknown): Promise<Customer> {
     assertPlainObject(payload);
 
+    const country = parseCountry(payload.country);
+
     const input: CreateCustomerInput = {
       companyName: parseString(payload.companyName, 'companyName'),
-      taxId: parseOptionalTaxId(payload.taxId),
+      taxId: parseOptionalTaxIdForCountry(country, payload.taxId),
       contactEmail: parseEmail(payload.contactEmail, 'contactEmail'),
-      country: parseCountry(payload.country),
+      country,
       planId: parseOptionalPlan(payload.planId),
     };
 
@@ -78,6 +80,7 @@ export class CustomerService {
     assertPlainObject(payload);
 
     const existingCustomer = await this.getCustomer(id);
+    const country = payload.country === undefined ? existingCustomer.country : parseCountry(payload.country);
 
     const input: UpdateCustomerInput = {
       companyName:
@@ -86,14 +89,13 @@ export class CustomerService {
           : parseString(payload.companyName, 'companyName'),
       taxId:
         payload.taxId === undefined
-          ? existingCustomer.taxId
-          : parseOptionalTaxId(payload.taxId),
+          ? parseOptionalTaxIdForCountry(country, existingCustomer.taxId)
+          : parseOptionalTaxIdForCountry(country, payload.taxId),
       contactEmail:
         payload.contactEmail === undefined
           ? existingCustomer.contactEmail
           : parseEmail(payload.contactEmail, 'contactEmail'),
-      country:
-        payload.country === undefined ? existingCustomer.country : parseCountry(payload.country),
+      country,
       planId:
         payload.planId === undefined
           ? existingCustomer.planId

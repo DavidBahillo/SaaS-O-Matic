@@ -1,6 +1,7 @@
 node_modules
 dist
 *.db
+!data/app.db
 *.sqlite
 *.sqlite3
 .env

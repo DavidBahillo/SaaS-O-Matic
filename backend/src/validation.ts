@@ -181,6 +181,22 @@ export function parseOptionalTaxId(value: unknown): string | null {
   return normalizedValue;
 }
 
+export function parseOptionalTaxIdForCountry(countryCode: string, value: unknown): string | null {
+  const parsedValue = parseOptionalString(value);
+
+  if (parsedValue === null) {
+    return null;
+  }
+
+  const normalizedValue = toUpperTrimmed(parsedValue);
+
+  if (countryCode === 'ES' && !isValidSpanishTaxId(normalizedValue)) {
+    throw badRequest('El campo del identificador fiscal no es un DNI/NIF/CIF válido.');
+  }
+
+  return normalizedValue;
+}
+
 export function parseEmail(value: unknown, fieldName: string): string {
   const email = parseString(value, fieldName);
 
