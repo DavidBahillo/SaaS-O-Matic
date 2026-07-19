@@ -46,6 +46,7 @@ cd backend
 npm install
 ```
 
+
 ### Frontend
 
 ```bash
@@ -77,13 +78,16 @@ cd backend
 npm start
 ```
 
+
 Que hace este comando:
 
 - Ejecuta `tsx watch src/server.ts`
 - Inicia el servidor backend en modo desarrollo
 - Reinicia automaticamente al detectar cambios
 
-Opcional: resetear base de datos (si necesitas datos limpios)
+- Las Bases de datos se crearan segun ejecutes este comando `npm start`. Actualmente para este caso en concreto (No es recomendable) se han dejado los datos para que se pueda visualizar todo nada mas arrancar la aplicación 
+
+### Opcional: resetear base de datos (si necesitas datos limpios)
 
 ```bash
 cd backend
