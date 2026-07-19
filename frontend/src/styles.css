@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block');
+@config "../tailwind.config.js";
+@import "tailwindcss";
+
+:root {
+  --color-on-secondary-fixed: #18181b;
+  --color-on-tertiary-container: #bbf7d0;
+  --color-surface-bright: #18181b;
+  --color-on-tertiary-fixed-variant: #047857;
+  --color-on-primary-container: #ede9fe;
+  --color-on-background: #fafafa;
+  --color-on-tertiary: #001a12;
+  --color-on-primary-fixed: #2e1065;
+  --color-tertiary: #34d399;
+  --color-inverse-primary: #5b21b6;
+  --color-outline-variant: #27272a;
+  --color-on-secondary: #09090b;
+  --color-surface-variant: #18181b;
+  --color-tertiary-fixed-dim: #6ee7b7;
+  --color-on-error: #1a0000;
+  --color-tertiary-fixed: #bbf7d0;
+  --color-surface-tint: #a78bfa;
+  --color-on-secondary-fixed-variant: #3f3f46;
+  --color-surface-dim: #0c0c0f;
+  --color-primary: #a78bfa;
+  --color-error-container: #3b1111;
+  --color-on-secondary-container: #a1a1aa;
+  --color-primary-fixed-dim: #c4b5fd;
+  --color-surface-container-low: #0f0f12;
+  --color-surface: #0c0c0f;
+  --color-tertiary-container: #065f46;
+  --color-surface-container: #121215;
+  --color-secondary-container: #27272a;
+  --color-surface-container-highest: #1e1e22;
+  --color-on-error-container: #fca5a5;
+  --color-on-surface-variant: #a1a1aa;
+  --color-on-tertiary-fixed: #003318;
+  --color-surface-container-high: #18181b;
+  --color-primary-container: #7c3aed;
+  --color-error: #ef4444;
+  --color-background: #09090b;
+  --color-surface-container-lowest: #09090b;
+  --color-secondary: #71717a;
+  --color-on-primary: #0a0012;
+  --color-inverse-on-surface: #09090b;
+  --color-secondary-fixed: #a1a1aa;
+  --color-outline: #52525b;
+  --color-on-primary-fixed-variant: #5b21b6;
+  --color-primary-fixed: #ede9fe;
+  --color-secondary-fixed-dim: #71717a;
+  --color-on-surface: #fafafa;
+  --color-inverse-surface: #fafafa;
+
+  --radius-default: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  --font-headline: "Geist";
+  --font-display: "Geist";
+  --font-body: "Geist";
+  --font-label: "Geist";
+}
+
+@theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Geist", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Custom range input styling for premium violet color */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #a78bfa;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+  transition: transform 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #a78bfa;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+  border: none;
+  transition: transform 0.1s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Smooth transition animations for pages and modals */
+.animate-in {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+}
+
+.fade-in {
+  animation-name: fadeIn;
+}
+
+.zoom-in-95 {
+  animation-name: zoomIn95;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn95 {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+

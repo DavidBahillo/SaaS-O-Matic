@@ -1,0 +1,287 @@
+{
+  "info": {
+    "_postman_id": "3e93a0f2-6a17-4d32-bd3a-87c08df0f33b",
+    "name": "SaaS-O-Matic Backend",
+    "description": "Coleccion actualizada para Customers, Simulations, Impuestos y Pricing Tiers.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"David\",\n  \"apellido\": \"Bahillo\",\n  \"email\": \"david@example.com\",\n  \"contrasena\": \"supersecreta123\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/users", "host": ["{{baseUrl}}"], "path": ["users"] }
+          }
+        },
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/users", "host": ["{{baseUrl}}"], "path": ["users"] }
+          }
+        },
+        {
+          "name": "Get User By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/users/{{userId}}", "host": ["{{baseUrl}}"], "path": ["users", "{{userId}}"] }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"David\",\n  \"apellido\": \"Bahillo Actualizado\",\n  \"email\": \"david.updated@example.com\",\n  \"contrasena\": \"supersecreta456\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/users/{{userId}}", "host": ["{{baseUrl}}"], "path": ["users", "{{userId}}"] }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/users/{{userId}}", "host": ["{{baseUrl}}"], "path": ["users", "{{userId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "Create Customer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyName\": \"Empresa Demo S.L.\",\n  \"contactEmail\": \"contacto@empresa.com\",\n  \"country\": \"ES\",\n  \"taxId\": \"00000000T\",\n  \"planId\": \"Plan Starter\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/customers", "host": ["{{baseUrl}}"], "path": ["customers"] }
+          }
+        },
+        {
+          "name": "List Customers",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/customers", "host": ["{{baseUrl}}"], "path": ["customers"] }
+          }
+        },
+        {
+          "name": "Get Customer By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/customers/{{customerId}}", "host": ["{{baseUrl}}"], "path": ["customers", "{{customerId}}"] }
+          }
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyName\": \"Empresa Demo Actualizada S.L.\",\n  \"contactEmail\": \"nuevo@empresa.com\",\n  \"country\": \"ES\",\n  \"taxId\": \"00000000T\",\n  \"planId\": \"Plan Pro\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/customers/{{customerId}}", "host": ["{{baseUrl}}"], "path": ["customers", "{{customerId}}"] }
+          }
+        },
+        {
+          "name": "Delete Customer",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/customers/{{customerId}}", "host": ["{{baseUrl}}"], "path": ["customers", "{{customerId}}"] }
+          }
+        },
+        {
+          "name": "Get Customer Full",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/customers/{{customerId}}/full", "host": ["{{baseUrl}}"], "path": ["customers", "{{customerId}}", "full"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Simulations",
+      "item": [
+        {
+          "name": "Create Simulation",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": {{customerId}},\n  \"activeUsers\": 25,\n  \"storage\": 120.5,\n  \"apiCalls\": 50000,\n  \"currency\": \"EUR\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/simulations", "host": ["{{baseUrl}}"], "path": ["simulations"] }
+          }
+        },
+        {
+          "name": "List Simulations",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/simulations", "host": ["{{baseUrl}}"], "path": ["simulations"] }
+          }
+        },
+        {
+          "name": "List Simulations by Customer",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/simulations?customerId={{customerId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["simulations"],
+              "query": [{ "key": "customerId", "value": "{{customerId}}" }]
+            }
+          }
+        },
+        {
+          "name": "Get Simulation By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/simulations/{{simulationId}}", "host": ["{{baseUrl}}"], "path": ["simulations", "{{simulationId}}"] }
+          }
+        },
+        {
+          "name": "Update Simulation",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"activeUsers\": 40,\n  \"storage\": 300,\n  \"apiCalls\": 120000,\n  \"currency\": \"EUR\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/simulations/{{simulationId}}", "host": ["{{baseUrl}}"], "path": ["simulations", "{{simulationId}}"] }
+          }
+        },
+        {
+          "name": "Delete Simulation",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/simulations/{{simulationId}}", "host": ["{{baseUrl}}"], "path": ["simulations", "{{simulationId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Impuestos",
+      "item": [
+        {
+          "name": "Create Tax",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"countryName\": \"ES\",\n  \"taxName\": \"IVA\",\n  \"percentage\": 21\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/impuestos", "host": ["{{baseUrl}}"], "path": ["impuestos"] }
+          }
+        },
+        {
+          "name": "List Taxes",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/impuestos", "host": ["{{baseUrl}}"], "path": ["impuestos"] }
+          }
+        },
+        {
+          "name": "Get Tax By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/impuestos/{{taxId}}", "host": ["{{baseUrl}}"], "path": ["impuestos", "{{taxId}}"] }
+          }
+        },
+        {
+          "name": "Update Tax",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"countryName\": \"ES\",\n  \"taxName\": \"IVA General\",\n  \"percentage\": 21\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/impuestos/{{taxId}}", "host": ["{{baseUrl}}"], "path": ["impuestos", "{{taxId}}"] }
+          }
+        },
+        {
+          "name": "Delete Tax",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/impuestos/{{taxId}}", "host": ["{{baseUrl}}"], "path": ["impuestos", "{{taxId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pricing Tiers",
+      "item": [
+        {
+          "name": "Create Pricing Tier",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"level\": 4,\n  \"userLimit\": null,\n  \"pricePerUser\": 4.5\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/pricing-tiers", "host": ["{{baseUrl}}"], "path": ["pricing-tiers"] }
+          }
+        },
+        {
+          "name": "List Pricing Tiers",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/pricing-tiers", "host": ["{{baseUrl}}"], "path": ["pricing-tiers"] }
+          }
+        },
+        {
+          "name": "Get Pricing Tier By Id",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/pricing-tiers/{{pricingTierId}}", "host": ["{{baseUrl}}"], "path": ["pricing-tiers", "{{pricingTierId}}"] }
+          }
+        },
+        {
+          "name": "Update Pricing Tier",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"level\": 2,\n  \"userLimit\": 60,\n  \"pricePerUser\": 7.5\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/pricing-tiers/{{pricingTierId}}", "host": ["{{baseUrl}}"], "path": ["pricing-tiers", "{{pricingTierId}}"] }
+          }
+        },
+        {
+          "name": "Delete Pricing Tier",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "{{baseUrl}}/pricing-tiers/{{pricingTierId}}", "host": ["{{baseUrl}}"], "path": ["pricing-tiers", "{{pricingTierId}}"] }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "userId", "value": "1" },
+    { "key": "customerId", "value": "1" },
+    { "key": "simulationId", "value": "1" },
+    { "key": "taxId", "value": "1" },
+    { "key": "pricingTierId", "value": "1" }
+  ]
+}

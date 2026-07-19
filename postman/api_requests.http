@@ -1,0 +1,166 @@
+﻿@baseUrl = http://localhost:3000
+@customerId = 1
+@simulationId = 1
+@taxId = 1
+@pricingTierId = 1
+@userId = 1
+
+### Create User
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "nombre": "David",
+  "apellido": "Bahillo",
+  "email": "david@example.com",
+  "contrasena": "supersecreta123"
+}
+
+### List Users
+GET {{baseUrl}}/users
+
+### Get User By Id
+GET {{baseUrl}}/users/{{userId}}
+
+### Update User
+PUT {{baseUrl}}/users/{{userId}}
+Content-Type: application/json
+
+{
+  "nombre": "David",
+  "apellido": "Bahillo Actualizado",
+  "email": "david.updated@example.com",
+  "contrasena": "supersecreta456"
+}
+
+### Delete User
+DELETE {{baseUrl}}/users/{{userId}}
+
+### Create Customer
+POST {{baseUrl}}/customers
+Content-Type: application/json
+
+{
+  "companyName": "Empresa Demo S.L.",
+  "contactEmail": "contacto@empresa.com",
+  "country": "ES",
+  "taxId": "00000000T",
+  "planId": "Plan Starter"
+}
+
+### List Customers
+GET {{baseUrl}}/customers
+
+### Get Customer By Id
+GET {{baseUrl}}/customers/{{customerId}}
+
+### Update Customer
+PUT {{baseUrl}}/customers/{{customerId}}
+Content-Type: application/json
+
+{
+  "companyName": "Empresa Demo Actualizada S.L.",
+  "contactEmail": "nuevo@empresa.com",
+  "country": "ES",
+  "taxId": "00000000T",
+  "planId": "Plan Pro"
+}
+
+### Delete Customer
+DELETE {{baseUrl}}/customers/{{customerId}}
+
+### Get Customer Full
+GET {{baseUrl}}/customers/{{customerId}}/full
+
+### Create Simulation
+POST {{baseUrl}}/simulations
+Content-Type: application/json
+
+{
+  "customerId": {{customerId}},
+  "activeUsers": 25,
+  "storage": 120.5,
+  "apiCalls": 50000,
+  "currency": "EUR"
+}
+
+### List Simulations
+GET {{baseUrl}}/simulations
+
+### List Simulations by Customer
+GET {{baseUrl}}/simulations?customerId={{customerId}}
+
+### Get Simulation By Id
+GET {{baseUrl}}/simulations/{{simulationId}}
+
+### Update Simulation
+PUT {{baseUrl}}/simulations/{{simulationId}}
+Content-Type: application/json
+
+{
+  "activeUsers": 40,
+  "storage": 300,
+  "apiCalls": 120000,
+  "currency": "EUR"
+}
+
+### Delete Simulation
+DELETE {{baseUrl}}/simulations/{{simulationId}}
+
+### Create Tax
+POST {{baseUrl}}/impuestos
+Content-Type: application/json
+
+{
+  "countryName": "ES",
+  "taxName": "IVA",
+  "percentage": 21
+}
+
+### List Taxes
+GET {{baseUrl}}/impuestos
+
+### Get Tax By Id
+GET {{baseUrl}}/impuestos/{{taxId}}
+
+### Update Tax
+PUT {{baseUrl}}/impuestos/{{taxId}}
+Content-Type: application/json
+
+{
+  "countryName": "ES",
+  "taxName": "IVA General",
+  "percentage": 21
+}
+
+### Delete Tax
+DELETE {{baseUrl}}/impuestos/{{taxId}}
+
+### Create Pricing Tier
+POST {{baseUrl}}/pricing-tiers
+Content-Type: application/json
+
+{
+  "level": 4,
+  "userLimit": null,
+  "pricePerUser": 4.5
+}
+
+### List Pricing Tiers
+GET {{baseUrl}}/pricing-tiers
+
+### Get Pricing Tier By Id
+GET {{baseUrl}}/pricing-tiers/{{pricingTierId}}
+
+### Update Pricing Tier
+PUT {{baseUrl}}/pricing-tiers/{{pricingTierId}}
+Content-Type: application/json
+
+{
+  "level": 2,
+  "userLimit": 60,
+  "pricePerUser": 7.5
+}
+
+### Delete Pricing Tier
+DELETE {{baseUrl}}/pricing-tiers/{{pricingTierId}}

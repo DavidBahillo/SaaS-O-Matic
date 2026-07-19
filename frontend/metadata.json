@@ -1,0 +1,8 @@
+{
+  "name": "SaaS-O-Matic",
+  "description": "Herramienta interna de gestión de ventas, clientes y calculadora dinámica de presupuestos progresivos para SaaS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
